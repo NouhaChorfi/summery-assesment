@@ -59,7 +59,11 @@ function reduce(array, f, acc) {
 //wordLengths("hello its me") // [5,3,2]
 
 function wordLengths(str) {
-    // TODO: your code here 
+  var result=[];
+    return map(str.split(" "),function(element,i){
+      result=element.length;
+      return result
+    })
 }
 
 //=============================================================================
@@ -71,8 +75,15 @@ function wordLengths(str) {
 // countOccurrences("hello", "l"); // 2
 // countOccurrences("hello, world!", "l"); // 3
 
+
 function countOccurrences(string, character) {
-    // your code is here
+ 
+  return reduce(string.split(""),function(count,element, i){
+    if(element===character){
+      count=count+1;
+    }
+    return count
+  }, 0)
 }
 
 //=============================================================================
@@ -83,8 +94,24 @@ function countOccurrences(string, character) {
 //solve it using the most appropriate helper functions(reduce,each,map,filter).
 // wordsLongerThanThree("Hello Mad World") //["Hello", "World"]
 
+// function filter(array, predicate) {
+//   var acc = [];
+//   each(array, function(element, i) {
+//     if (predicate(element, i)) {
+//       acc.push(element);
+//     }
+//   });
+//   return acc;
+// }
+
 function wordsLongerThanThree(str) {
-    // TODO: your code here 
+  var result=[]
+    return filter(str.split(' '),function(element,i){
+      if (element.length>=3){
+        result.push(element)
+      }
+      return result
+    })
 }
 
 //=============================================================================
@@ -98,8 +125,12 @@ function wordsLongerThanThree(str) {
 //repeatString('dog', 2); // => 'dog' + 'dog' => 'dogdog' 
 //repeatString('dog', 3); // => 'dog' + 'dog' + 'dog' => 'dogdogdog'
 
+var result=''
 function repeatString(str, count) { 
- // TODO: your code here 
+  if(count >0){
+    result= result+repeatString(str, count-1)
+  }
+  return result;
 } 
  
 
@@ -130,6 +161,28 @@ function repeatString(str, count) {
 
 // Write your code here .....
 
+function makePizza( crust, size, numberOfSlice){
+  var crust= crust;
+  var size=size;
+  var ingredients=[];
+  var numberOfSlice=numberOfSlice;
+
+  return{
+    addIngredients:function(ingredient){
+        ingredients.push(ingredient);
+    },
+    displayIngredients:function(){
+        ingredients.join(',')
+    },
+    bakePizza:function(){
+      window.setTimeout(function(){ return "Your "+ crust+" "+ size+ " "+ " pizza is done"},2000)
+    },
+    eatSlice:function(){
+       numberOfSlice=numberOfSlice-1;
+    }
+  }
+}
+
 //=============================================================================
 /*                                  Q6                                      */
 //=============================================================================
@@ -153,9 +206,35 @@ d- Decrement the number of "unread" books
 */
 
 // Now, to make sure that you are actually reading, make a comment below this and type: Yes I am
+//Yes I am
 
 // Write your code here .....
 
+ function ReadingList(){
+   var reading={}
+    reading.read=read;
+    reading.readBooks=readBooks;
+    reading.unRead=unRead;
+    reading.toRead=toRead;
+    reading.currentRead=currentRead;
+    reading.addBook=addBook;
+
+    reading.addBook=addBook;
+    reading.finishCurrentBook=finishCurrentBook;
+   return reading;
+
+ }
+
+ var addBook=function(book){
+   this.toRead.push(book);
+   this.unRead=this.unRead+1
+ }
+ var finishCurrentBook=function(){
+    this.readBooks.push(this.currentRead);
+    this.read=this.read+1;
+    this.currentRead=toRead[0];
+    this.unRead=this.unRead-1
+ }
 //=============================================================================
 /*                                  Q7                                       */
 //=============================================================================
@@ -175,6 +254,39 @@ d- Decrement the number of "unread" books
 //  safe('money','small') => "watch gold-bar money"
 
 // Write your code here .....
+
+ function makeSafe(storageSizeLimit){
+
+   var storageSizeLimit=storageSizeLimit;
+   var storageItems=[];
+   var sizeExisitingItems=0;
+
+    return{
+      addItem:function(item, itemSize){
+
+        if(itemSize==="big"){
+            sizeExisitingItems+=3;
+        }
+        else if(itemSize==="medium"){
+            sizeExisitingItems+=2;
+        }
+        else if(itemSize==="small"){
+            sizeExisitingItems+=1;
+        }
+
+        if (sizeExisitingItems>storageSizeLimit){
+          storageItems.push(item);
+          
+        }
+        else if(sizeExisitingItems===storageSizeLimit){
+            return storageItems.join(" ")
+        }
+        else if(sizeExisitingItems<storageSizeLimit){
+            return ("can't fit")
+        }
+    }
+  }
+ }
 
 //=============================================================================
 /*                                  Q8                                       */

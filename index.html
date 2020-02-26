@@ -1,0 +1,32 @@
+<!--//Create HTML, CSS & JS files and connect them together
+//Add Two text input fields, one with a placeholder input, and another with color
+//Add a button below them and an empty unordered list below the button
+//Create 3 CSS classes (red, yellow, blue)
+//Create a javascript function that adds an item list to the unordered list
+//If the color value is red, yellow or blue
+//Add the CSS class to the item accordingly
+//Do not add a list item if the color value is non of the colors-->
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <input id='text1' type="text">
+        <input id="text2" type="text">
+        <br>
+        <button >Click</button>
+        <br>
+        <ul id="myList"></ul>
+
+        <script>
+            $(function(){
+                function additem(){
+                    $("#myList").append('<li></li>')
+                }
+            })
+        </script>
+    </body>
+</html>
